@@ -1,5 +1,5 @@
 # apksigner-debug
-Forget about signing those apks in the most insecure way possible.
+Forget about signing those apks. In the most insecure way possible.
 
 ## USAGE
 apksigner-debug <app.apk>
