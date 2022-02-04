@@ -10,6 +10,7 @@ if you want to regenerate your keys just remove ~/.DEBUGkeystore
 ## REQUIREMENTS:
 
 keytool for key generation
+
 apksigner for signing the apk
 
 
