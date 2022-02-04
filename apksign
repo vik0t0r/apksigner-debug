@@ -1,0 +1,28 @@
+#!/bin/bash
+
+kpath=~/.DEBUGkeystore
+
+# check number of arguments
+if [[ $# -ne 1 ]]; then
+    echo "Incorrect number of arguments:"
+    echo "USAGE: apksign <path_to_apk.apk>"
+    exit 2
+fi
+
+# check if apk exists
+if ! [[ -f $1 ]]; then
+    echo "File not found"
+    echo "USAGE: apksign <path_to_apk.apk>"
+    exit 2
+fi
+
+# check if keystore exists
+if ! [[ -f $kpath ]]; then
+    # generate keystore
+    $(/usr/bin/keytool -genkey -keystore $kpath -alias DEBUG -keyalg RSA -keysize 2048 -validity 10000 -storepass debug1234 -dname "CN=Mark Smith, OU=Java, O=Oracle, L=Cupertino, S=California, C=US")
+    echo "NEW keystore generated"
+fi
+
+# sign apk
+apksigner sign --ks-pass pass:debug1234 --ks $kpath --ks-key-alias DEBUG $1
+echo "FINISHED"
