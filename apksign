@@ -25,4 +25,5 @@ fi
 
 # sign apk
 apksigner sign --ks-pass pass:debug1234 --ks $kpath --ks-key-alias DEBUG $1
+rm $1.idsig
 echo "FINISHED"
